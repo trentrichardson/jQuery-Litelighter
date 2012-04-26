@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+
+		<title>jQuery Litelighter</title>
+
+		<meta name="Description" content="jQuery Litelighter - Light weight syntax highlighting plugin for jQuery." />
+		<meta name="Keywords" content="jquery, javascript, syntax, highlight, color" />
+		
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="jquery-litelighter.js"></script>
+
+		<style type="text/css">
+			/*
+			------------------------------
+				layout
+			------------------------------
+			*/
+			body,img,p,h1,h3,fieldset,form,pre,code,ul,li,table,tr,td,th{ margin:0; padding:0; border:0; }
+			body {
+				font: 12px/16px Arial, Helvetica, sans-serif;
+				border-top: solid 5px #A04334;
+				background-color: #FAF9F4;
+				text-align: center;
+			}
+			noscript{ color: #ff0000; font-weight: bold; }
+			h1{ font-family: Times, serif; color: #555; margin: 0 0 20px -50px; letter-spacing: 2px; }
+			h2{ font-family: Times, serif; color: #777; margin: 0 0 20px -50px; letter-spacing: 2px; }
+			p{ line-height: 18px; margin: 10px 0; }
+			a{ color: #7B94B2; }
+			a:hover{ color: #5B7492; }
+			#wrapper{ text-align: left; margin: 40px auto; background-color: #ffffff; width: 800px; min-height: 200px; padding: 25px 25px 25px 75px; }
+			#nav{ margin: 0 0 20px 20px; }
+			pre{ margin: 10px 0; padding: 10px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;}
+			pre.code{overflow: auto;}
+
+		</style>
+		
+		<script type="text/javascript">
+			$.litelighter.languages.cfml = {
+				comment: { re: /(\&lt\;\!\-\-\-([\s\S]*?)\-\-\-\&gt\;)/g, style: 'comment' },
+				cftag: { re: /(\&lt\;\/?cf\w(.|\n)*?\/?\&gt\;)/gi, style: 'number', embed: ['string','numbers','keywords'] },
+				tag: { re: /(\&lt\;\/?(?!cf)\w(.|\n)*?\/?\&gt\;)/g, style: 'keyword', embed: ['string'] },
+				string: { re: /((\'.*?\')|(\".*?\"))/g, style: 'string' },
+				keywords: { re: /(false|true|null)/g, style: 'keyword' }
+			};
+
+			$(document).ready(function(){
+
+				// all you need to get started
+				$('pre').litelighter();
+
+				// toggle examples on/off
+				var on = true;
+				$('#toggleOnOff').click(function(e){
+					e.preventDefault();
+					if(on) $('pre.example').litelighter('disable');
+					else $('pre.example').litelighter('enable');
+					on = !on;
+				});
+
+				// toggle light to dark themes
+				var light = false;
+				$('#toggleLightDark').click(function(e){
+					e.preventDefault();
+					if(light) $('pre.example').litelighter('option','style','dark');
+					else $('pre.example').litelighter('option','style','light');
+					light = !light;
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<h1>jQuery Litelighter - Light Weight Syntax Highlighting for jQuery</h1>
+
+			<p>jQuery is a super light weight yet powerful syntax highlighting plugin (under 5k, under 3.5k minified).  It comes with light and dark themes and js, html, css languages by default.  It is super easy to extend! Check below for more languages.</p>
+			<p><a href="http://trentrichardson.com" title="Back to Blog">Back to Blog</a></p>
+			
+			<ul id="nav">
+				<li><a href="#Examples">Examples</a></li>
+				<li><a href="#Initialization">Initialization</a></li>
+				<li><a href="#Options">Options</a></li>
+				<li><a href="#Methods">Methods</a></li>
+				<li><a href="#AddLanguages">Add Languages</a></li>
+				<li><a href="#AddStyles">Add Styles</a></li>
+				<li><a href="#License">License</a></li>
+			</ul>
+
+			<h2 id="Donation">Donation</h2>
+			<a href="http://carbounce.com" title="Car Bounce" style="float: right; display: inline-block;width:380px;padding: 10px;background-color: #fbfbfb;border: dotted 4px #e8e8e8;color: #9EC45F;font-size: 16px;text-decoration:none;letter-spacing:1px;"><img src="http://carbounce.com/img/logo_small.png" alt="Car Bounce" align="left" style="margin-right: 20px;"/>Try my new app to keep you informed of your car's financing status and value.</a>	
+			<p>Has this Powertable been helpful to you?</p>
+			<div class="donation">
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+				<input type="hidden" name="cmd" value="_s-xclick">
+				<input type="hidden" name="hosted_button_id" value="C2QQHR7JQGD28">
+				<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+				<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+				</form>
+			</div>
+
+			<h2 id="Examples">Examples</h2>
+
+			<p><a href="#" id="toggleOnOff">Toggle On/Off</a> | <a href="#" id="toggleLightDark">Toggle Light/Dark</a></p>
+
+			<h3>Javascript</h3>
+			
+
+<pre class="code example" data-lllanguage="js" data-llstyle="dark">$pt = $('#listingsTable1').powertable({
+	controller: '#tableController',
+	moveDisabled: ['condition'],
+	fixedColumns: ['description'],
+	fixedRows: [0]
+});</pre>
+
+			<h3>Html</h3>
+<pre class="code example" data-lllanguage="html" data-llstyle="dark">&lt;!--
+	This is a comment
+--&gt;
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th data-ptcolumn="description"&gt;Description&lt;/th&gt;
+		&lt;th data-ptcolumn="type"&gt;Type&lt;/th&gt;
+		&lt;th data-ptcolumn="purchased"&gt;Purchased&lt;/th&gt;
+		&lt;th data-ptcolumn="condition"&gt;Condition&lt;/th&gt;
+		&lt;th data-ptcolumn="modelnum"&gt;Model #&lt;/th&gt;
+		&lt;th data-ptcolumn="serialnum"&gt;Serial #&lt;/th&gt;
+		&lt;th data-ptcolumn="assignedto"&gt;Assigned To&lt;/th&gt;
+		&lt;th data-ptcolumn="lang"&gt;Language&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</pre>
+			
+			<h3>CSS</h3>
+<pre class="code example" data-lllanguage="css" data-llstyle="dark">/* pt specific styles: ptfixed, ptdragover, ptdraghandle, ptshowhide */
+table tr th.ptfixed{ font-size: 12%; /* a fixed table header cell */ }
+
+table tr td.ptfixed{ color: #8F9657; }
+
+table .ptdragover{ height: 100px; width: 100%; }
+
+table .ptdraghandle{ font-family: "Sans Serif"; }
+
+table .ptshowhide:hover{ /* class given to a generated show/hide link */ }</pre>
+
+			<h3>Generic</h3>
+<pre class="code example" data-lllanguage="generic" data-llstyle="dark">
+// some comments
+for(i=0; i&lt;10; i++){
+	/*
+		this is some pseudo code
+	*/
+	str += " concat str";
+}
+</pre>
+			<h2 id="Initialization">Initialization</h2>
+			<p>You may include any of the options shown.  All are optional.</p>
+<pre class="code" data-lllanguage="js">
+$('pre').litelighter({
+	clone: true,
+	style: 'mystyle',
+	language: 'css'
+});
+</pre>
+
+			<p>You may specify inline of the html which language and style to use:</p>
+<pre class="code" data-lllanguage="html">&lt;pre data-lllanguage="js" data-llstyle="mystyle"&gt;
+	var i = 2+3;
+&lt;/pre&gt;</pre>
+
+			<h2 id="Options">The Options</h2>
+
+<pre class="code" data-lllanguage="js">
+// Whether to clone the existing object (true or false)
+clone: false,
+
+// Which style to use. light and dark are available by default
+style: 'light',
+
+// which language to use. generic, js, html, css are available by default
+language: 'generic',
+</pre>
+
+			<h2 id="Methods">The Methods</h2>
+
+<pre class="code" data-lllanguage="js">
+// Initialize a litelighter instance
+$el.litelighter({});
+
+// Enable a litelighter
+$el.litelighter('enable');
+
+// Disable a litelighter
+$el.litelighter('disable');
+
+// Destroy a litelighter
+$el.litelighter('destroy');
+
+// Get or set an option. When value is provided a Set takes place
+// If only the key is provided the value will be retrieved
+$el.litelighter('option', key, value);
+
+// If at any time you need the original code
+$el.data('llcode');
+</pre>
+
+			<h2 id="AddLanguages">Add Languages</h2>
+			<p>Adding languages is as simple as adding a new entry to an object.  The library currently provide generic, js, css, html. Generic is simple C style highlighter. The new entry should be formatted as follows:</p>
+
+<pre class="code" data-lllanguage="js">
+$.litelighter.languages.cfml = {
+	comment: { re: /(\&lt\;\!\-\-\-([\s\S]*?)\-\-\-\&gt\;)/g, style: 'comment' },
+	cftag: { re: /(\&lt\;\/?cf\w(.|\n)*?\/?\&gt\;)/gi, style: 'number', embed: ['string','numbers','keywords'] },
+	tag: { re: /(\&lt\;\/?(?!cf)\w(.|\n)*?\/?\&gt\;)/g, style: 'keyword', embed: ['string'] },
+	string: { re: /((\'.*?\')|(\".*?\"))/g, style: 'string' },
+	keywords: { re: /(false|true|null)/g, style: 'keyword' }
+};
+</pre>
+			<p>Then your language will be available. The embed option is only needed when sub tokens are allowed, for instance in a tag with attributes, we would like our attributes to be styled as strings.</p>
+<pre class="code" data-lllanguage="cfml">&lt;!---
+	This is a comment
+---&gt;
+&lt;div class="myclass"&gt;This is some html&lt;div&gt;
+&lt;cfset myvar = null&gt;
+&lt;cfquery datasource="mydsn" name="myname"&gt;
+	select * from my table
+&lt;/cfquery&gt;</pre>
+
+			<p>The keys to the new object do not matter, but the "style" properties much match an entry in your style.</p>
+
+			<h2 id="AddStyles">Add Styles</h2>
+			<p>Adding styles is similar to languages, but you will be specifying css styles to each entry.  You will want to provide at least the styles provided here as they are used by the standard languages, but you may also want more.</p>
+
+<pre class="code" data-lllanguage="js">
+$.litelighter.styles.mystyle = {
+	code: 'background-color:#141414;color:#ffffff;',
+	comment: 'color:#999;',
+	string: 'color:#8F9657;',
+	number: 'color:#CF6745;',
+	keyword: 'color:#6F87A8;'
+};
+</pre>			
+
+			<h2 id="License">License</h2>
+			<p>You may use this project under MIT or GPL licenses.</p>
+			<p><a href="http://trentrichardson.com/Impromptu/GPL-LICENSE.txt" title="GPL License">GPL License</a></p>
+			<p><a href="http://trentrichardson.com/Impromptu/MIT-LICENSE.txt" title="MIT License">MIT License</a></p>
+		</div>
+	</body>
+</html>
