@@ -10,6 +10,7 @@
 		
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="jquery-litelighter.js"></script>
+		<script type="text/javascript" src="jquery-litelighter-extra.js"></script>
 
 		<style type="text/css">
 			/*
@@ -38,13 +39,6 @@
 		</style>
 		
 		<script type="text/javascript">
-			$.litelighter.languages.cfml = {
-				comment: { re: /(\&lt\;\!\-\-\-([\s\S]*?)\-\-\-\&gt\;)/g, style: 'comment' },
-				cftag: { re: /(\&lt\;\/?cf\w(.|\n)*?\/?\&gt\;)/gi, style: 'number', embed: ['string','numbers','keywords'] },
-				tag: { re: /(\&lt\;\/?(?!cf)\w(.|\n)*?\/?\&gt\;)/g, style: 'keyword', embed: ['string'] },
-				string: { re: /((\'.*?\')|(\".*?\"))/g, style: 'string' },
-				keywords: { re: /(false|true|null)/g, style: 'keyword' }
-			};
 
 			$(document).ready(function(){
 
@@ -76,7 +70,7 @@
 		<div id="wrapper">
 			<h1>jQuery Litelighter - Light Weight Syntax Highlighting for jQuery</h1>
 
-			<p>jQuery is a super light weight yet powerful syntax highlighting plugin (under 5k, under 3.5k minified).  It comes with light and dark themes and js, html, css languages by default.  It is super easy to extend! Check below for more languages.</p>
+			<p>jQuery is a super light weight yet powerful syntax highlighting plugin.  It comes with light and dark themes and js, html, css languages by default.  It is super easy to extend! Check below for more languages.</p>
 			<p><a href="http://trentrichardson.com" title="Back to Blog">Back to Blog</a> | <a href="https://github.com/trentrichardson/jQuery-Litelighter" title="jQuery Litelighter on Github">Fork on Github</a></p>
 			
 			<ul id="nav">
@@ -130,7 +124,27 @@
 		&lt;th data-ptcolumn="assignedto"&gt;Assigned To&lt;/th&gt;
 		&lt;th data-ptcolumn="lang"&gt;Language&lt;/th&gt;
 	&lt;/tr&gt;
-&lt;/table&gt;</pre>
+&lt;/table&gt;
+&lt;style type="text/css"&gt;
+	body{ font-size: 12px; background-color: #005500; }
+	#myelement{
+		line-height: 22px;
+		font-size: 2em;
+	}
+&lt;/style&gt;
+
+&lt;script type="text/javascript"&gt;
+	/*
+		here is some script
+	*/
+	if(myvar == "foobar"){
+		for(i=1; i < myarr.length; i++){
+			// some output
+			$('#myEl').removeClass('highlight');
+			return "2012-06-23".match( /^(\d{4})\-(\d{2})\-(\d{2})$/ );
+		}
+	}
+&lt;/script&gt;</pre>
 			
 			<h3>CSS</h3>
 <pre class="code example" data-lllanguage="css" data-llstyle="dark">/* pt specific styles: ptfixed, ptdragover, ptdraghandle, ptshowhide */
@@ -210,21 +224,22 @@ $el.data('llcode');
 
 <pre class="code" data-lllanguage="js">
 $.litelighter.languages.cfml = {
-	comment: { re: /(\&lt\;\!\-\-\-([\s\S]*?)\-\-\-\&gt\;)/g, style: 'comment' },
-	cftag: { re: /(\&lt\;\/?cf\w(.|\n)*?\/?\&gt\;)/gi, style: 'number', embed: ['string','numbers','keywords'] },
-	tag: { re: /(\&lt\;\/?(?!cf)\w(.|\n)*?\/?\&gt\;)/g, style: 'keyword', embed: ['string'] },
+	comment: { re: /(\&amp;lt\;\!\-\-\-([\s\S]*?)\-\-\-\&amp;gt\;)/g, style: 'comment' },
+	cftag: { re: /(\&amp;lt\;\/?cf\w(.|\n)*?\/?\&amp;gt\;)/gi, style: 'number', embed: ['string','numbers','keywords'] },
+	tag: { re: /(\&amp;lt\;\/?(?!cf)\w(.|\n)*?\/?\&amp;gt\;)/g, style: 'keyword', embed: ['string'] },
 	string: { re: /((\'.*?\')|(\".*?\"))/g, style: 'string' },
-	keywords: { re: /(false|true|null)/g, style: 'keyword' }
+	keywords: { re: /(false|true|null)/g, style: 'keyword' },
+	sql: { re: /(?:\&amp;lt;cfquery.*?\&amp;gt;)([\s\S]+?)(?:\&amp;lt;\/cfquery\&amp;gt;)/gi, language: 'sql'}
 };
 </pre>
-			<p>Then your language will be available. The embed option is only needed when sub tokens are allowed, for instance in a tag with attributes, we would like our attributes to be styled as strings.</p>
+			<p>Then your language will be available. To embed a different language take a look at the sql entry.  The regular expression finds the start and end delimiters with non-captures, and captures the body of the sub language.  The "language" key points the match to the new language.  The embed option is only needed when sub tokens are allowed, for instance in a tag with attributes, we would like our attributes to be styled as strings. Keep in mind it is a good idea to borrow definitions from the core languages (generic, js, css, html). This way when they are updated so are yours.</p>
 <pre class="code" data-lllanguage="cfml">&lt;!---
 	This is a comment
 ---&gt;
 &lt;div class="myclass"&gt;This is some html&lt;div&gt;
 &lt;cfset myvar = null&gt;
 &lt;cfquery datasource="mydsn" name="myname"&gt;
-	select * from my table
+	select * from myTable
 &lt;/cfquery&gt;</pre>
 
 			<p>The keys to the new object do not matter, but the "style" properties much match an entry in your style.</p>
@@ -238,7 +253,8 @@ $.litelighter.styles.mystyle = {
 	comment: 'color:#999;',
 	string: 'color:#8F9657;',
 	number: 'color:#CF6745;',
-	keyword: 'color:#6F87A8;'
+	keyword: 'color:#6F87A8;',
+	operators: 'color:#9e771e;'
 };
 </pre>			
 
