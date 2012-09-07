@@ -9,7 +9,7 @@
  */
 (function($){
 	$.litelighter = function($this, options){
-		this.settings = $.extend({},{ clone: false, style: 'light', language: 'generic' },options);
+		this.settings = $.extend({},{ clone: false, style: 'light', language: 'generic', tab: '    ' },options);
 		this.code = $this;
 		this.enable();
 	};
@@ -27,7 +27,7 @@
 
 				var style = $.litelighter.styles[this.settings.style],
 					lang = $.litelighter.languages[this.settings.language],
-					txt = $.litelighter.highlight(this.codelite.html(), style, lang);
+					txt = $.litelighter.highlight(this.codelite.html(), style, lang).replace(/\t/g, this.settings.tab);
 
 				this.codelite.attr('style', style.code).html(txt);
 				return this.code;
@@ -148,7 +148,7 @@
 			string: { re: /((\'.*?\')|(\".*?\"))/g, style: 'string' },
 			numbers: { re: /(\-?(\d+|\d+\.\d+|\.\d+))/g, style: 'number' },
 			regex: { re: /([^\/]\/[^\/].+\/(g|i|m)*)/g, style: 'number' },
-			keywords: { re: /(?:\b)(for|foreach|while|if|else|elseif|switch|break|as|return|this|class|self|default|var|false|true|null|undefined)(?:\b)/gi, style: 'keyword' },
+			keywords: { re: /(?:\b)(function|for|foreach|while|if|else|elseif|switch|break|as|return|this|class|self|default|var|false|true|null|undefined)(?:\b)/gi, style: 'keyword' },
 			operators: { re: /(\+|\-|\/|\*|\%|\=|\&lt;|\&gt;|\||\?|\.)/g, style: 'operators' }
 		}
 	};
