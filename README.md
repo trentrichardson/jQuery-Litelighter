@@ -4,6 +4,7 @@ jQuery Litelighter provides super light weight syntax highlighting.
 
 Author: Trent Richardson [http://trentrichardson.com]
 Documentation: [http://trentrichardson.com/examples/jQuery-Litelighter/]
+Twitter: [@practicalweb](http://twitter.com/practicalweb)
 
 About
 -----
