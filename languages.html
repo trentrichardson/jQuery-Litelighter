@@ -311,7 +311,24 @@ insert into myTable (firstName, lastName) values ('John','Doe');
 update myTable set firstName='Johnny' where firstName='John';
 
 -- do a delete
-delete from myTable where firstName='Johnny';</pre>
+delete from myTable where firstName='Johnny';
+
+-- create a stored procedure
+CREATE PROCEDURE [dbo].[spGetSomethingById] 
+	@Id int,
+	@myemail varchar(50) output
+AS
+BEGIN
+	insert into myTable (developerName, email, activated, about) values ('the name', 'asdf@fdsa.com', 1, 'this is about')
+	
+	select @myemail=rtrim(email) from myTable where id=1
+
+	select id, developerName, email, activated, about from myTable
+	
+	select id, developerName, email, activated, about from myTable where id=@Id
+
+	return 5
+END</pre>
 	
 
 		</div>

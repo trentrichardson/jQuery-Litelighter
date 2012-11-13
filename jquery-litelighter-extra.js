@@ -17,7 +17,7 @@
 		comment: { re: /(\-\-.*|\#.*)/g, style: 'comment' },
 		string: $.litelighter.languages.generic.string,
 		numbers: $.litelighter.languages.generic.numbers,
-		keywords: { re: /(?:\b)(select|insert|update|delete|where|from|set|create|alter|values|and|or|order|by|group|as|into|false|true|null|\+|\-|coalesc)(?:\b)/gi, style: 'keyword' },
+		keywords: { re: /(?:\b)(select|insert|update|delete|where|from|set|create|alter|drop|values|and|or|order|by|group|having|view|table|function|procedure|return|begin|end|with|as|into|false|true|null)(?:\b)/gi, style: 'keyword' },
 		operators: $.litelighter.languages.generic.operators
 	};
 
