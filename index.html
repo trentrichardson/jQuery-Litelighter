@@ -5,12 +5,9 @@
 
 		<title>jQuery Litelighter</title>
 
-		<meta name="Description" content="jQuery Litelighter - Light weight syntax highlighting plugin for jQuery." />
-		<meta name="Keywords" content="jquery, javascript, syntax, highlight, color" />
+		<meta name="Description" content="jQuery Litelighter - Light weight syntax highlighting plugin for jQuery and Zepto." />
+		<meta name="Keywords" content="jquery, zepto, javascript, syntax, highlight, color" />
 		
-		<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
-		<script type="text/javascript" src="jquery-litelighter.js"></script>
-		<script type="text/javascript" src="jquery-litelighter-extra.js"></script>
 
 		<style type="text/css">
 			/*
@@ -38,39 +35,13 @@
 
 		</style>
 		
-		<script type="text/javascript">
-
-			$(document).ready(function(){
-
-				// all you need to get started
-				$('pre').litelighter();
-
-				// toggle examples on/off
-				var on = true;
-				$('#toggleOnOff').click(function(e){
-					e.preventDefault();
-					if(on) $('pre.example').litelighter('disable');
-					else $('pre.example').litelighter('enable');
-					on = !on;
-				});
-
-				// toggle light to dark themes
-				var light = false;
-				$('#toggleLightDark').click(function(e){
-					e.preventDefault();
-					if(light) $('pre.example').litelighter('option','style','dark');
-					else $('pre.example').litelighter('option','style','light');
-					light = !light;
-				});
-			});
-		</script>
 	</head>
 
 	<body>
 		<div id="wrapper">
-			<h1>jQuery Litelighter - Light Weight Syntax Highlighting for jQuery</h1>
+			<h1>jQuery Litelighter - Light Weight Syntax Highlighting for jQuery and Zepto</h1>
 
-			<p>jQuery is a super light weight yet powerful syntax highlighting plugin.  It comes with light and dark themes and js, html, css languages by default.  It is super easy to extend! Check below for more languages.</p>
+			<p>Litelighter is a super light weight yet powerful syntax highlighting plugin for jQuery and Zepto.  It comes with light and dark themes and js, html, css languages by default.  It is super easy to extend! Check below for more languages.</p>
 			<p><a href="http://trentrichardson.com" title="Back to Blog">Back to Blog</a> | <a href="https://github.com/trentrichardson/jQuery-Litelighter" title="jQuery Litelighter on Github">Fork on Github</a></p>
 			
 			<ul id="nav">
@@ -266,6 +237,38 @@ $.litelighter.styles.mystyle = {
 			<p><a href="http://trentrichardson.com/Impromptu/GPL-LICENSE.txt" title="GPL License">GPL License</a></p>
 			<p><a href="http://trentrichardson.com/Impromptu/MIT-LICENSE.txt" title="MIT License">MIT License</a></p>
 		</div>
+
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<!-- <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.min.js"></script> -->
+		<script type="text/javascript" src="jquery-litelighter.js"></script>
+		<script type="text/javascript" src="jquery-litelighter-extra.js"></script>
+
+		<script type="text/javascript">
+
+			$(document).ready(function(){
+
+				// all you need to get started
+				$('pre').litelighter();
+
+				// toggle examples on/off
+				var on = true;
+				$('#toggleOnOff').click(function(e){
+					e.preventDefault();
+					if(on) $('pre.example').litelighter('disable');
+					else $('pre.example').litelighter('enable');
+					on = !on;
+				});
+
+				// toggle light to dark themes
+				var light = false;
+				$('#toggleLightDark').click(function(e){
+					e.preventDefault();
+					if(light) $('pre.example').litelighter('option','style','dark');
+					else $('pre.example').litelighter('option','style','light');
+					light = !light;
+				});
+			});
+		</script>
 
 		<script type="text/javascript"> /*
 		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

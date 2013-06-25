@@ -6,9 +6,6 @@
  * Dual licensed under the MIT or GPL licenses.
  * http://trentrichardson.com/Impromptu/GPL-LICENSE.txt
  * http://trentrichardson.com/Impromptu/MIT-LICENSE.txt
- * 
- * Here are the extra languages, I suggest take what you 
- * need and delete the rest in your application
  */
 (function($){
 
@@ -53,4 +50,4 @@
 		php: { re: /(?:\&lt;\?php)([\s\S]+?)(?:\?\&gt;)/gi, language: 'php'}
 	});
 
-})(jQuery);
+})(window.jQuery || window.Zepto || window.$);

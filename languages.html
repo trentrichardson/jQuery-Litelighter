@@ -5,12 +5,9 @@
 
 		<title>jQuery Litelighter Languages Test</title>
 
-		<meta name="Description" content="jQuery Litelighter - Light weight syntax highlighting plugin for jQuery." />
-		<meta name="Keywords" content="jquery, javascript, syntax, highlight, color" />
+		<meta name="Description" content="jQuery Litelighter - Light weight syntax highlighting plugin for jQuery and Zepto." />
+		<meta name="Keywords" content="jquery, zepto, javascript, syntax, highlight, color" />
 		
-		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-		<script type="text/javascript" src="jquery-litelighter.js"></script>
-		<script type="text/javascript" src="jquery-litelighter-extra.js"></script>
 
 		<style type="text/css">
 			/*
@@ -37,34 +34,6 @@
 			pre.code{overflow: auto;}
 
 		</style>
-		
-		<script type="text/javascript">
-
-			$(document).ready(function(){
-
-				// all you need to get started
-				$('pre').litelighter({style:'dark'});
-
-				// toggle examples on/off
-				var on = true;
-				$('#toggleOnOff').click(function(e){
-					e.preventDefault();
-					if(on) $('pre.example').litelighter('disable');
-					else $('pre.example').litelighter('enable');
-					on = !on;
-				});
-
-				// toggle light to dark themes
-				var light = false;
-				$('#toggleLightDark').click(function(e){
-					e.preventDefault();
-					if(light) $('pre.example').litelighter('option','style','dark');
-					else $('pre.example').litelighter('option','style','light');
-					light = !light;
-				});
-
-			});
-		</script>
 	</head>
 
 	<body>
@@ -332,5 +301,38 @@ END</pre>
 	
 
 		</div>
+
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<!-- <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.min.js"></script> -->
+		<script type="text/javascript" src="jquery-litelighter.js"></script>
+		<script type="text/javascript" src="jquery-litelighter-extra.js"></script>
+
+		<script type="text/javascript">
+
+			$(document).ready(function(){
+
+				// all you need to get started
+				$('pre').litelighter({style:'dark'});
+
+				// toggle examples on/off
+				var on = true;
+				$('#toggleOnOff').click(function(e){
+					e.preventDefault();
+					if(on) $('pre.example').litelighter('disable');
+					else $('pre.example').litelighter('enable');
+					on = !on;
+				});
+
+				// toggle light to dark themes
+				var light = false;
+				$('#toggleLightDark').click(function(e){
+					e.preventDefault();
+					if(light) $('pre.example').litelighter('option','style','dark');
+					else $('pre.example').litelighter('option','style','light');
+					light = !light;
+				});
+
+			});
+		</script>
 	</body>
 </html>
