@@ -2,7 +2,7 @@
  * jQuery Litelighter
  * By: Trent Richardson [http://trentrichardson.com]
  * 
- * Copyright 2012 Trent Richardson
+ * Copyright 2013 Trent Richardson
  * Dual licensed under the MIT or GPL licenses.
  * http://trentrichardson.com/Impromptu/GPL-LICENSE.txt
  * http://trentrichardson.com/Impromptu/MIT-LICENSE.txt

@@ -1,6 +1,6 @@
 jQuery Litelighter
 ==================
-jQuery Litelighter provides super light weight syntax highlighting.
+jQuery Litelighter provides super light weight syntax highlighting for jQuery and Zepto.
 
 - Author: [Trent Richardson](http://trentrichardson.com)
 - Documentation: [http://trentrichardson.com/examples/jQuery-Litelighter/](http://trentrichardson.com/examples/jQuery-Litelighter/)
@@ -12,7 +12,7 @@ The goal of jQuery Litelighter is to provide an extremely lightweight, but elega
 
 License
 -------
-Copyright 2012 Trent Richardson
+Copyright 2013 Trent Richardson
 
 You may use this project under MIT or GPL licenses.
 
